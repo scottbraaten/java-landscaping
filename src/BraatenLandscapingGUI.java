@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-
 import java.awt.Component;
 import java.net.URL;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -14,14 +14,22 @@ import javax.swing.JOptionPane;
  *
  * @author Scott Braaten
  */
-
 public class BraatenLandscapingGUI extends javax.swing.JFrame {
+
+    // class level references
+    private final double GRASS_PER_SQFT = 5.00;
+    private final double GRAVEL_PER_SQFT = 2.00;
+
+    DefaultListModel<Customer> customerList = new DefaultListModel();
 
     /**
      * Creates new form BraatenLandscapingGUI
      */
     public BraatenLandscapingGUI() {
         initComponents();
+        
+        // center the form
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -34,6 +42,8 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         btgYardType = new javax.swing.ButtonGroup();
+        tabMain = new javax.swing.JTabbedPane();
+        pnlWelcome = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         lblDesc = new javax.swing.JLabel();
         lblGrass = new javax.swing.JLabel();
@@ -43,6 +53,34 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         lblPhoto = new javax.swing.JLabel();
         btnNext = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        pnlInformation = new javax.swing.JPanel();
+        lblInformationTitle = new javax.swing.JLabel();
+        lblSubtitle = new javax.swing.JLabel();
+        lblPersonal = new javax.swing.JLabel();
+        lblYardInfo = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        lblAddress = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
+        lblLength = new javax.swing.JLabel();
+        txtLength = new javax.swing.JTextField();
+        lblWidth = new javax.swing.JLabel();
+        txtWidth = new javax.swing.JTextField();
+        btnCalculate = new javax.swing.JButton();
+        lblOrderTitle = new javax.swing.JLabel();
+        scrOrderContainer = new javax.swing.JScrollPane();
+        txaOrderInfo = new javax.swing.JTextArea();
+        btnSubmitOrder = new javax.swing.JButton();
+        pnlCustomerList = new javax.swing.JPanel();
+        lblCustomerListTitle = new javax.swing.JLabel();
+        lblCutomerList = new javax.swing.JLabel();
+        lblCustomerDetails = new javax.swing.JLabel();
+        scrCustomerListContainer = new javax.swing.JScrollPane();
+        lstCustomers = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaCustomerInfo = new javax.swing.JTextArea();
+        btnLoad = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         mnbMain = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mniExit = new javax.swing.JMenuItem();
@@ -56,6 +94,9 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
                 formComponentResized(evt);
             }
         });
+
+        tabMain.setMaximumSize(new java.awt.Dimension(1000, 660));
+        tabMain.setMinimumSize(new java.awt.Dimension(1000, 660));
 
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,6 +146,324 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
+        pnlWelcome.setLayout(pnlWelcomeLayout);
+        pnlWelcomeLayout.setHorizontalGroup(
+            pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                .addContainerGap(159, Short.MAX_VALUE)
+                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTitle)))
+                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblGravel)
+                                .addComponent(lblGrass))
+                            .addComponent(rdoGrass, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rdoGravel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(110, 110, 110)
+                        .addComponent(lblPhoto)
+                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(148, 148, 148))
+        );
+        pnlWelcomeLayout.setVerticalGroup(
+            pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle)
+                .addGap(43, 43, 43)
+                .addComponent(lblDesc)
+                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(rdoGrass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblGrass)
+                        .addGap(138, 138, 138)
+                        .addComponent(rdoGravel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblGravel))
+                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(lblPhoto))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)))
+                .addGap(67, 67, 67))
+        );
+
+        tabMain.addTab("Welcome", pnlWelcome);
+
+        pnlInformation.setMaximumSize(new java.awt.Dimension(1000, 660));
+        pnlInformation.setMinimumSize(new java.awt.Dimension(1000, 660));
+        pnlInformation.setPreferredSize(new java.awt.Dimension(1000, 660));
+
+        lblInformationTitle.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lblInformationTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInformationTitle.setText("Scott Braaten Landscapes");
+
+        lblSubtitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSubtitle.setText("Fill out this information so that you can get your landscape order placed!");
+
+        lblPersonal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblPersonal.setText("Personal Info");
+
+        lblYardInfo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblYardInfo.setText("Yard Info");
+
+        lblName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblName.setText("Name:");
+
+        txtName.setNextFocusableComponent(txtAddress);
+
+        lblAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAddress.setText("Address:");
+
+        txtAddress.setNextFocusableComponent(txtLength);
+
+        lblLength.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblLength.setText("Length (ft):");
+
+        txtLength.setNextFocusableComponent(txtWidth);
+
+        lblWidth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblWidth.setText("Width (ft):");
+
+        txtWidth.setNextFocusableComponent(btnCalculate);
+
+        btnCalculate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCalculate.setText("Calculate");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
+
+        lblOrderTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblOrderTitle.setText("Your Order");
+
+        txaOrderInfo.setColumns(20);
+        txaOrderInfo.setRows(5);
+        txaOrderInfo.setName("txaOrderInfo"); // NOI18N
+        scrOrderContainer.setViewportView(txaOrderInfo);
+
+        btnSubmitOrder.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSubmitOrder.setText("Submit Order");
+        btnSubmitOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitOrderActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlInformationLayout = new javax.swing.GroupLayout(pnlInformation);
+        pnlInformation.setLayout(pnlInformationLayout);
+        pnlInformationLayout.setHorizontalGroup(
+            pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInformationLayout.createSequentialGroup()
+                .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInformationLayout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(lblPersonal))
+                    .addGroup(pnlInformationLayout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(btnCalculate)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInformationLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(lblOrderTitle)
+                        .addGap(221, 221, 221))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInformationLayout.createSequentialGroup()
+                        .addComponent(btnSubmitOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(187, 187, 187))))
+            .addGroup(pnlInformationLayout.createSequentialGroup()
+                .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInformationLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(lblSubtitle))
+                    .addGroup(pnlInformationLayout.createSequentialGroup()
+                        .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlInformationLayout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAddress)
+                                    .addComponent(lblName))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlInformationLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(lblLength)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtLength, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(lblWidth)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlInformationLayout.createSequentialGroup()
+                                .addGap(254, 254, 254)
+                                .addComponent(lblYardInfo)))
+                        .addGap(138, 138, 138)
+                        .addComponent(scrOrderContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(pnlInformationLayout.createSequentialGroup()
+                .addGap(269, 269, 269)
+                .addComponent(lblInformationTitle)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnlInformationLayout.setVerticalGroup(
+            pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInformationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblInformationTitle)
+                .addGap(16, 16, 16)
+                .addComponent(lblSubtitle)
+                .addGap(64, 64, 64)
+                .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInformationLayout.createSequentialGroup()
+                        .addComponent(lblOrderTitle)
+                        .addGap(18, 18, 18)
+                        .addComponent(scrOrderContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE))
+                    .addGroup(pnlInformationLayout.createSequentialGroup()
+                        .addComponent(lblPersonal)
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblName)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAddress)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addComponent(lblYardInfo)
+                        .addGap(28, 28, 28)
+                        .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblWidth)
+                            .addComponent(lblLength)
+                            .addComponent(txtLength, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47)))
+                .addGroup(pnlInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSubmitOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalculate))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+
+        tabMain.addTab("Information", pnlInformation);
+
+        pnlCustomerList.setMaximumSize(new java.awt.Dimension(1000, 660));
+        pnlCustomerList.setPreferredSize(new java.awt.Dimension(1000, 660));
+
+        lblCustomerListTitle.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lblCustomerListTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCustomerListTitle.setText("Scott Braaten Landscapes");
+
+        lblCutomerList.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblCutomerList.setText("Customer List");
+
+        lblCustomerDetails.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblCustomerDetails.setText("Customer Details");
+
+        lstCustomers.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lstCustomers.setModel(customerList);
+        lstCustomers.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstCustomersValueChanged(evt);
+            }
+        });
+        scrCustomerListContainer.setViewportView(lstCustomers);
+
+        txaCustomerInfo.setColumns(20);
+        txaCustomerInfo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txaCustomerInfo.setRows(5);
+        jScrollPane1.setViewportView(txaCustomerInfo);
+
+        btnLoad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnLoad.setText("Load List");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDelete.setText("Delete Customer");
+        btnDelete.setToolTipText("");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlCustomerListLayout = new javax.swing.GroupLayout(pnlCustomerList);
+        pnlCustomerList.setLayout(pnlCustomerListLayout);
+        pnlCustomerListLayout.setHorizontalGroup(
+            pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCustomerListTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomerListLayout.createSequentialGroup()
+                .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(lblCutomerList))
+                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                        .addGap(253, 253, 253)
+                        .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(scrCustomerListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(btnDelete))
+                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(lblCustomerDetails)))
+                .addContainerGap(198, Short.MAX_VALUE))
+        );
+        pnlCustomerListLayout.setVerticalGroup(
+            pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCustomerListTitle)
+                .addGap(52, 52, 52)
+                .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCutomerList)
+                    .addComponent(lblCustomerDetails))
+                .addGap(18, 18, 18)
+                .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scrCustomerListContainer)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+
+        tabMain.addTab("Customer List", pnlCustomerList);
+
         mnuFile.setText("File");
 
         mniExit.setText("Exit");
@@ -144,87 +503,81 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitle))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblGravel)
-                        .addComponent(lblGrass))
-                    .addComponent(rdoGrass, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rdoGravel, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(110, 110, 110)
-                .addComponent(lblPhoto)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblTitle)
-                .addGap(43, 43, 43)
-                .addComponent(lblDesc)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addComponent(rdoGrass)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblGrass)
-                                .addGap(138, 138, 138)
-                                .addComponent(rdoGravel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblGravel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(lblPhoto)))
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(171, 171, 171))))
+                .addContainerGap()
+                .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        // create the second GUI form
-        BraatenLandscapingGUI_Info infoForm = new BraatenLandscapingGUI_Info();
-        
-        // set default close operation to "dispose" so application stays open
-        infoForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        // launch the second GUI form by making it visible
-        infoForm.setVisible(true);
-    }//GEN-LAST:event_btnNextActionPerformed
+    private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
+        // exit the application
+        System.exit(0);
+    }//GEN-LAST:event_mniExitActionPerformed
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    private void mniSubmitOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSubmitOrderActionPerformed
+        submitOrder();
+    }//GEN-LAST:event_mniSubmitOrderActionPerformed
+
+    private void mniResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniResetActionPerformed
+
         reset();
-    }//GEN-LAST:event_btnResetActionPerformed
+    }//GEN-LAST:event_mniResetActionPerformed
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        int ogWidth = 894;
+        int ogHeight = 640;
+
+        int formWidth = this.getWidth();
+        int formHeight = this.getHeight();
+
+        // get value of position differential
+        int xGradient = ogWidth > formWidth ? ~Math.abs((formWidth - ogWidth) / 2) : Math.abs((formWidth - ogWidth) / 2);
+        int yGradient = ogHeight > formHeight ? ~Math.abs((formHeight - ogHeight) / 2) : Math.abs((formHeight - ogHeight) / 2);
+
+        /* make lblTitle position and size relative */
+        componentRelativeReposition(lblTitle, xGradient, yGradient, new Limits(0, 0, "", "lower"));
+
+        /* make lblDesc position and size relative */
+        componentRelativeReposition(lblDesc, xGradient, yGradient, new Limits(0, 80, "", "lower"));
+
+        /* make lblPhoto position and Size relative */
+        componentRelativeReposition(lblPhoto, xGradient, yGradient, new Limits(0, 140, "", "lower"));
+
+        /* make rdoGrass position and size relative */
+        componentRelativeReposition(rdoGrass, xGradient, yGradient, new Limits(0, 0, "", ""));
+
+        /* make lblGrass position and size relative */
+        componentRelativeReposition(lblGrass, xGradient, yGradient, new Limits(0, 0, "", ""));
+
+        /* make rdoGravel position and size relative */
+        componentRelativeReposition(rdoGravel, xGradient, yGradient, new Limits(0, 0, "", ""));
+
+        /* make lblGravel position and size relative */
+        componentRelativeReposition(lblGravel, xGradient, yGradient, new Limits(0, 0, "", ""));
+
+        /* make btnNext position and size relative */
+        componentRelativeReposition(btnNext, xGradient, yGradient, new Limits(700, 0, "upper", ""));
+
+        /* make btnReset position and size relative */
+        componentRelativeReposition(btnReset, xGradient, yGradient, new Limits(700, 0, "upper", ""));
+    }//GEN-LAST:event_formComponentResized
 
     private void rdoGrassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoGrassActionPerformed
         if (rdoGrass.isSelected()) {
             // look in directory where class exists, and get location of "grass.jpg"
             URL location = this.getClass().getResource("grass.jpg");
-            
+
             // create image using the location of "grass.jpg"
             ImageIcon icon = new ImageIcon(location);
-            
+
             // set the image icon to the label
             lblPhoto.setIcon(icon);
         }
@@ -237,59 +590,62 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rdoGravelActionPerformed
 
-    private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
-        // exit the application
-        System.exit(0);
-    }//GEN-LAST:event_mniExitActionPerformed
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        // confirm that a selection was made then move to next tab
+        if (rdoGrass.isSelected() == false && rdoGravel.isSelected() == false) {
+            JOptionPane.showMessageDialog(this, "Please select the type of yard.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            tabMain.setSelectedIndex(1);
+        }
+    }//GEN-LAST:event_btnNextActionPerformed
 
-    private void mniSubmitOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSubmitOrderActionPerformed
-        JOptionPane.showMessageDialog(this, "Method is not complete.");
-        lblTitle.setText("" + btnReset.getX());
-    }//GEN-LAST:event_mniSubmitOrderActionPerformed
-
-    private void mniResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniResetActionPerformed
-        
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         reset();
-    }//GEN-LAST:event_mniResetActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
-    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        int ogWidth = 894;
-        int ogHeight = 640;
-        
-        int formWidth = this.getWidth();
-        int formHeight = this.getHeight();
-        
-        // get value of position differential
-        int xGradient = ogWidth > formWidth ? ~Math.abs((formWidth - ogWidth) / 2) : Math.abs((formWidth - ogWidth) / 2);
-        int yGradient = ogHeight > formHeight ? ~Math.abs((formHeight - ogHeight) / 2) : Math.abs((formHeight - ogHeight) / 2);
-        
-        /* make lblTitle position and size relative */
-        componentRelativeReposition(lblTitle, xGradient, yGradient, new Limits(0, 0, "", "lower"));
-        
-        /* make lblDesc position and size relative */
-        componentRelativeReposition(lblDesc, xGradient, yGradient, new Limits(0, 80, "", "lower"));
-        
-        /* make lblPhoto position and Size relative */
-        componentRelativeReposition(lblPhoto, xGradient, yGradient, new Limits(0, 140, "", "lower"));
-        
-        /* make rdoGrass position and size relative */
-        componentRelativeReposition(rdoGrass, xGradient, yGradient, new Limits(0, 0, "", ""));
-        
-        /* make lblGrass position and size relative */
-        componentRelativeReposition(lblGrass, xGradient, yGradient, new Limits(0, 0, "", ""));
-        
-        /* make rdoGravel position and size relative */
-        componentRelativeReposition(rdoGravel, xGradient, yGradient, new Limits(0, 0, "", ""));
-        
-        /* make lblGravel position and size relative */
-        componentRelativeReposition(lblGravel, xGradient, yGradient, new Limits(0, 0, "", ""));
-        
-        /* make btnNext position and size relative */
-        componentRelativeReposition(btnNext, xGradient, yGradient, new Limits(700, 0, "upper", ""));
-        
-        /* make btnReset position and size relative */
-        componentRelativeReposition(btnReset, xGradient, yGradient, new Limits(700, 0, "upper", ""));
-    }//GEN-LAST:event_formComponentResized
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        // validate the inputs
+        if (validateInputs() == false) {
+            return;    // end the method if validation failed
+        }
+
+        // create the Customer object and show the information
+        Customer cust = createCustomer();
+        txaOrderInfo.setText(cust.getDetails());
+    }//GEN-LAST:event_btnCalculateActionPerformed
+
+    private void btnSubmitOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitOrderActionPerformed
+        submitOrder();
+    }//GEN-LAST:event_btnSubmitOrderActionPerformed
+
+    private void lstCustomersValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCustomersValueChanged
+        // get selected item’s index number
+        int index = lstCustomers.getSelectedIndex();
+
+        // if something was selected, show the object’s details
+        if (index > -1) {
+            Customer cust = customerList.getElementAt(index);
+            txaCustomerInfo.setText(cust.getDetails());
+        }
+
+    }//GEN-LAST:event_lstCustomersValueChanged
+
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+        JOptionPane.showMessageDialog(this, "Method is incomplete.");
+    }//GEN-LAST:event_btnLoadActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // get the index for the selected item
+        int index = lstCustomers.getSelectedIndex();
+
+        // if something is selected, delete it and clear the details textarea
+        if (index > -1) {
+            customerList.remove(index);
+            txaCustomerInfo.setText("");
+        }
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,38 +680,69 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new BraatenLandscapingGUI().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgYardType;
+    private javax.swing.JButton btnCalculate;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSubmitOrder;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblCustomerDetails;
+    private javax.swing.JLabel lblCustomerListTitle;
+    private javax.swing.JLabel lblCutomerList;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblGrass;
     private javax.swing.JLabel lblGravel;
+    private javax.swing.JLabel lblInformationTitle;
+    private javax.swing.JLabel lblLength;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblOrderTitle;
+    private javax.swing.JLabel lblPersonal;
     private javax.swing.JLabel lblPhoto;
+    private javax.swing.JLabel lblSubtitle;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblWidth;
+    private javax.swing.JLabel lblYardInfo;
+    private javax.swing.JList<Customer> lstCustomers;
     private javax.swing.JMenuBar mnbMain;
     private javax.swing.JMenuItem mniExit;
     private javax.swing.JMenuItem mniReset;
     private javax.swing.JMenuItem mniSubmitOrder;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenu mnuOrder;
+    private javax.swing.JPanel pnlCustomerList;
+    private javax.swing.JPanel pnlInformation;
+    private javax.swing.JPanel pnlWelcome;
     private javax.swing.JRadioButton rdoGrass;
     private javax.swing.JRadioButton rdoGravel;
+    private javax.swing.JScrollPane scrCustomerListContainer;
+    private javax.swing.JScrollPane scrOrderContainer;
+    private javax.swing.JTabbedPane tabMain;
+    private javax.swing.JTextArea txaCustomerInfo;
+    private javax.swing.JTextArea txaOrderInfo;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtLength;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtWidth;
     // End of variables declaration//GEN-END:variables
-    
+
     public class Limits {
+
         private int x, y;
         private String applyX, applyY;
 
@@ -390,9 +777,7 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         public void setApplyY(String applyY) {
             this.applyY = applyY;
         }
-        
-        
-        
+
         public Limits(int x, int y, String applyX, String applyY) {
             this.x = x;
             this.y = y;
@@ -400,34 +785,182 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
             this.applyY = applyY;
         }
     }
-    
+
     private void reset() {
+        tabMain.setSelectedIndex(0);
         // clear the radiobutton selection
         btgYardType.clearSelection();
-        
-        // put the image back to "dirt"
+        // put the image back to "Dirt"
         lblPhoto.setIcon(new ImageIcon(this.getClass().getResource("dirt.jpg")));
+        txtName.setText("");
+        this.txtName.requestFocusInWindow();
+        txtAddress.setText("");
+        txtLength.setText("");
+        txtWidth.setText("");
+        txaOrderInfo.setText("");
     }
-    
+
     private void componentRelativeReposition(Component comp, int xGradient, int yGradient, Limits limits) {
         int compX = comp.getX();
         int compY = comp.getY();
-        
+
         int updatedTitleX;
         int updatedTitleY;
-        
+
         updatedTitleX = switch (limits.getApplyX()) {
-            case "lower" -> (compX + xGradient) < limits.getX() ? limits.getX() : (compX + xGradient);
-            case "higher" -> (compX + xGradient) > limits.getX() ? limits.getX() : (compX + xGradient);
-            default -> compX + xGradient;
+            case "lower" ->
+                (compX + xGradient) < limits.getX() ? limits.getX() : (compX + xGradient);
+            case "higher" ->
+                (compX + xGradient) > limits.getX() ? limits.getX() : (compX + xGradient);
+            default ->
+                compX + xGradient;
         };
-        
+
         updatedTitleY = switch (limits.getApplyY()) {
-            case "lower" -> (compY + yGradient) < limits.getY() ? limits.getY() : (compY + yGradient);
-            case "higher" -> (compY + yGradient) > limits.getY() ? limits.getY() : (compY + yGradient);
-            default -> compY + yGradient;
+            case "lower" ->
+                (compY + yGradient) < limits.getY() ? limits.getY() : (compY + yGradient);
+            case "higher" ->
+                (compY + yGradient) > limits.getY() ? limits.getY() : (compY + yGradient);
+            default ->
+                compY + yGradient;
         };
-        
+
         comp.setLocation(updatedTitleX, updatedTitleY);
     }
+
+    private boolean validateInputs() {
+        // get inputs from user using the textboxes
+        String sName = txtName.getText();
+        String sAddress = txtAddress.getText();
+        String sWidth = txtWidth.getText();
+        String sLength = txtLength.getText();
+
+        // confirm that a radiobutton has been selected
+        if (btgYardType.getSelection() == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Error. Please select the type of yard.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        // make sure we have a name for the order
+        if (sName.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Enter a Name",
+                    "Name Error", JOptionPane.ERROR_MESSAGE);
+            txtName.requestFocusInWindow();
+            return false;
+        }
+
+        // make sure we have an address for the order
+        if (sAddress.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Enter a Address",
+                    "Address Error", JOptionPane.ERROR_MESSAGE);
+            txtAddress.requestFocusInWindow();
+            return false;
+        }
+
+        if (sAddress.length() < 6) {
+            JOptionPane.showMessageDialog(this, "Address must be six characters or more.",
+                    "Address Error", JOptionPane.ERROR_MESSAGE);
+            txtAddress.requestFocusInWindow();
+            return false;
+        }
+
+        if (sWidth.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Enter a Width",
+                    "Width Error", JOptionPane.ERROR_MESSAGE);
+            txtWidth.requestFocusInWindow();
+            return false;
+        }
+
+        // check to see if the width is a valid number
+        try {
+            Double.parseDouble(sWidth);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Width must be a number",
+                    "Width Error", JOptionPane.ERROR_MESSAGE);
+            txtWidth.setText("");
+            txtWidth.requestFocusInWindow();
+            return false;
+        }
+
+        if (Double.parseDouble(sWidth) <= 0) {
+            JOptionPane.showMessageDialog(this, "Width must be greater than 0",
+                    "Width Error", JOptionPane.ERROR_MESSAGE);
+            txtLength.setText("");
+            txtLength.requestFocusInWindow();
+            return false;
+        }
+
+        if (sLength.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Enter a Length",
+                    "Length Error", JOptionPane.ERROR_MESSAGE);
+            txtLength.requestFocusInWindow();
+            return false;
+        }
+
+        try {
+            Double.parseDouble(sLength);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Length must be a number",
+                    "Length Error", JOptionPane.ERROR_MESSAGE);
+            txtLength.setText("");
+            txtLength.requestFocusInWindow();
+            return false;
+        }
+
+        if (Double.parseDouble(sLength) <= 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Length must be must be greater than 0",
+                    "Length Error", JOptionPane.ERROR_MESSAGE);
+            txtLength.setText("");
+            txtLength.requestFocusInWindow();
+            return false;
+        }
+
+        // all is good so return true
+        return true;
+    }
+
+    private Customer createCustomer() {
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        double width = Double.parseDouble(txtWidth.getText());
+        double length = Double.parseDouble(txtLength.getText());
+        String yardType = "";
+        double totalCost = 0.0;
+
+        if (rdoGrass.isSelected()) {
+            yardType = "Grass";
+            totalCost = GRASS_PER_SQFT * width * length;
+        } else if (rdoGravel.isSelected()) {
+            yardType = "Gravel";
+            totalCost = GRAVEL_PER_SQFT * width * length;
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Error. Please select a yard type.");
+            totalCost = 0.0;
+        }
+
+        Customer cust = new Customer(0, name, address, yardType,
+                length, width, totalCost);
+        return cust;
+    }
+
+    private void submitOrder() {
+        if (validateInputs() == false) {
+            return;    // end the method if validation failed
+        }
+
+        Customer cust = createCustomer();
+        customerList.addElement(cust);
+        txaOrderInfo.setText(cust.getDetails());
+
+        // reset for the next customer
+        reset();
+
+        //move to the client orders tab
+        tabMain.setSelectedIndex(2);
+    }
+
 }
