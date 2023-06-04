@@ -4,10 +4,11 @@
  */
 
 import java.awt.Component;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +28,10 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
      */
     public BraatenLandscapingGUI() {
         initComponents();
-        
+
+        // load customers on init
+        loadCustomers();
+
         // center the form
         this.setLocationRelativeTo(null);
     }
@@ -104,6 +108,8 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
 
         lblDesc.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblDesc.setText("Whether it's grass or gravel, we've got you covered!");
+        lblDesc.setMaximumSize(new java.awt.Dimension(555, 32));
+        lblDesc.setMinimumSize(new java.awt.Dimension(555, 32));
 
         lblGrass.setText("$5/sqft");
 
@@ -150,60 +156,63 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         pnlWelcome.setLayout(pnlWelcomeLayout);
         pnlWelcomeLayout.setHorizontalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addContainerGap(147, Short.MAX_VALUE)
+                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblGravel)
+                        .addComponent(lblGrass))
+                    .addComponent(rdoGrass, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rdoGravel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(142, 142, 142)
+                .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTitle)))
+                        .addGap(131, 131, 131)
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblGravel)
-                                .addComponent(lblGrass))
-                            .addComponent(rdoGrass, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rdoGravel, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(110, 110, 110)
-                        .addComponent(lblPhoto)
-                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(148, 148, 148))
+                        .addGap(100, 100, 100)
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(135, 135, 135))
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                        .addGap(274, 274, 274)
+                        .addComponent(lblTitle))
+                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(lblTitle)
-                .addGap(43, 43, 43)
-                .addComponent(lblDesc)
+                .addGap(36, 36, 36)
+                .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(rdoGrass)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblGrass)
-                        .addGap(138, 138, 138)
-                        .addComponent(rdoGravel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblGravel))
-                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(lblPhoto))
+                        .addGap(52, 52, 52)
+                        .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98)))
-                .addGap(67, 67, 67))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                                .addComponent(rdoGrass)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblGrass)
+                                .addGap(138, 138, 138)
+                                .addComponent(rdoGravel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblGravel)
+                                .addGap(175, 175, 175))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(195, 195, 195))))))
         );
 
         tabMain.addTab("Welcome", pnlWelcome);
@@ -416,31 +425,31 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         pnlCustomerListLayout.setHorizontalGroup(
             pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCustomerListLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblCustomerListTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomerListLayout.createSequentialGroup()
                 .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCustomerListLayout.createSequentialGroup()
-                        .addGap(254, 254, 254)
+                        .addGap(209, 209, 209)
                         .addComponent(lblCutomerList))
                     .addGroup(pnlCustomerListLayout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(scrCustomerListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
                         .addGap(117, 117, 117)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrCustomerListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCustomerListLayout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(btnDelete))
-                    .addGroup(pnlCustomerListLayout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(lblCustomerDetails)))
-                .addContainerGap(198, Short.MAX_VALUE))
+                        .addGap(207, 207, 207)
+                        .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addGroup(pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomerListLayout.createSequentialGroup()
+                        .addComponent(lblCustomerDetails)
+                        .addGap(233, 233, 233))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomerListLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(161, 161, 161))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCustomerListLayout.createSequentialGroup()
+                        .addComponent(btnDelete)
+                        .addGap(237, 237, 237))))
+            .addGroup(pnlCustomerListLayout.createSequentialGroup()
+                .addGap(261, 261, 261)
+                .addComponent(lblCustomerListTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCustomerListLayout.setVerticalGroup(
             pnlCustomerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,19 +641,23 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_lstCustomersValueChanged
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
-        JOptionPane.showMessageDialog(this, "Method is incomplete.");
+        loadCustomers();
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // get the index for the selected item
-        int index = lstCustomers.getSelectedIndex();
+        try {
+            Customer old = lstCustomers.getSelectedValue();
 
-        // if something is selected, delete it and clear the details textarea
-        if (index > -1) {
-            customerList.remove(index);
-            txaCustomerInfo.setText("");
+            // if selected, delete and clear textarea
+            if (old != null) {
+                DataIO data = new DataIO();
+                data.delete(old.getName());
+                txaCustomerInfo.setText("");
+                loadCustomers();
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "DataIO Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
@@ -956,11 +969,40 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
         customerList.addElement(cust);
         txaOrderInfo.setText(cust.getDetails());
 
-        // reset for the next customer
-        reset();
+        try {
+            DataIO data = new DataIO(); // create DataIO object
+            data.add(cust);
+            loadCustomers();
+
+            // reset for the next customer
+            reset();
+
+            //move to the client orders tab
+            tabMain.setSelectedIndex(2);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "File IO Error", JOptionPane.ERROR_MESSAGE);
+        }
 
         //move to the client orders tab
         tabMain.setSelectedIndex(2);
+    }
+
+    private void loadCustomers() {
+        try {
+            DataIO data = new DataIO();
+            ArrayList<Customer> customers = data.getList();
+
+            // clear DefaultListModel and textarea
+            customerList.clear();
+            txaOrderInfo.setText("");
+
+            // copy objects from customers to DefaultListModel
+            for (int i = 0; i < customers.size(); i++) {
+                customerList.addElement(customers.get(i));
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "File IO Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }

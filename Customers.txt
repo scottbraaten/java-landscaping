@@ -1,0 +1,3 @@
+Scott Braaten#123 Yard Road#Grass#2.0#4.0#40.0
+John Doe#555 Regular St#Gravel#32.0#111.0#7104.0
+Jane Doe#1202 City Rd#Gravel#2.0#211.0#844.0
