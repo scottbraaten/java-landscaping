@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
@@ -645,19 +646,21 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
         try {
             Customer old = lstCustomers.getSelectedValue();
 
             // if selected, delete and clear textarea
             if (old != null) {
                 DataIO data = new DataIO();
-                data.delete(old.getName());
+                data.delete(old.getCustomerID());
                 txaCustomerInfo.setText("");
                 loadCustomers();
             }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "DataIO Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
@@ -979,8 +982,10 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
 
             //move to the client orders tab
             tabMain.setSelectedIndex(2);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "File IO Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Driver not found error: " + ex.getMessage(), "Database Driver Error", JOptionPane.ERROR_MESSAGE);
         }
 
         //move to the client orders tab
@@ -990,18 +995,20 @@ public class BraatenLandscapingGUI extends javax.swing.JFrame {
     private void loadCustomers() {
         try {
             DataIO data = new DataIO();
+
             ArrayList<Customer> customers = data.getList();
 
-            // clear DefaultListModel and textarea
+            // clear out the DefaultListModel and textarea
             customerList.clear();
             txaOrderInfo.setText("");
 
-            // copy objects from customers to DefaultListModel
+            // copy each object from the ArrayList over to the DefaultListModel
             for (int i = 0; i < customers.size(); i++) {
                 customerList.addElement(customers.get(i));
             }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "File IO Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
